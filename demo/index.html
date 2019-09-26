@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>@npolar/json-patch demo</title>
+  </head>
+  <body>
+    <h1>@npolar/json-patch demo</h1>
+    <p>See also <a href="mini.html">mini</a> demo.</p>
+    <section>
+      <pre><output id="object-output" /></pre>
+    </section>
+    <form>
+      <input name="/foo/text" type="text" placeholder="text" />
+      <input name="/foo/number" type="number" placeholder="number" />
+      <input name="/foo/color" type="color" />
+
+      <input name="/foo/checkbox" type="checkbox" />
+
+      <input name="/foo/radio" type="radio" value="r1" />
+      <input name="/foo/radio" type="radio" value="r2" />
+
+      <select name="/foo/select">
+        <option value="" selected></option>
+        <option value="one">one</option>
+        <option value="two">two</option>
+        <option value="three">three</option>
+      </select>
+
+      <input name="/date" type="date" />
+      <input name="/time" type="time" />
+
+      These work "as expected", ie. poor usability...
+
+
+      <input name="/datetime-local" type="datetime-local" />
+      <input name="/month" type="month" />
+      <input name="/week" type="week" />
+
+      <input name="/range" type="range" />
+
+      <button data-op="add" data-path="/foo/bar" value="fubr">
+        + add /foo/bar
+      </button>
+      <p>
+        Notice: All form elements above have a <code>name</code> attribute
+        containing a
+        <a href="https://tools.ietf.org/html/rfc6902">JSON Pointer</a>.
+      </p>
+      <pre>&lt;input name="/foo/text" placeholder="text" /&gt;</pre>
+    </form>
+
+    <section>
+      <h4>Event payloads</h4>
+      <p>
+        <a href="https://tools.ietf.org/html/rfc6902">JSON Patch</a> objects
+      </p>
+      <pre><output id="events-output" /></pre>
+    </section>
+    <script type="module" src="demo.js"></script>
+  </body>
+</html>
