@@ -3,7 +3,8 @@
 ES2019 browser library that sends user input events as (JSON) [Patch operations](https://tools.ietf.org/html/rfc6902) (add, copy, move, remove, replace).
 
 ## Usage
-The following example is equivalent to the [mini](demo/mini.html) demo.
+
+See mini [demo](https://patch-event.npolar.now.sh/demo/mini.html), equivalent to the code below.
 
 ```html
 <form>
@@ -28,6 +29,7 @@ register(document.querySelector("form"), handlePatchEvent);
 ```
 
 When typing "bar" the `form` will send 4 `patch-op` events, the last has payload:
+
 ```
 {"op":"replace","path":"/foo","value":"bar","type":"text","valid":true,"nullable":true}
 ```

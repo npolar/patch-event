@@ -1,0 +1,11 @@
+{
+  "name": "patch-event",
+  "version": 2,
+  "regions": ["bru"],
+  "builds": [
+    {
+      "src": "/readme.md|((demo|src)/**)",
+      "use": "@now/static"
+    }
+  ]
+}
