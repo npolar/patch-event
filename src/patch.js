@@ -37,7 +37,4 @@ export const mutating = {
   replace
 };
 
-export { test,
-InvalidOperationError,
-MissingError,
-TestError };
+export { test, InvalidOperationError, MissingError, TestError };
