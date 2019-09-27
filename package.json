@@ -4,7 +4,6 @@
   "description": "Receive (JSON) [Patch](https://tools.ietf.org/html/rfc6902) operation events on user input",
   "license": "MIT",
   "dependencies": {},
-  "module": "dist/patch-event.js",
   "devDependencies": {
     "eslint": "^6",
     "prettier": "^1.18.2",
@@ -13,8 +12,10 @@
     "typescript": "^3.5.2"
   },
   "scripts": {
+    "prettier": "prettier --write src/*.js",
     "dev": "rollup -c -w",
     "eslint": "eslint src/",
+    "test": "yarn eslint",
     "prepare": "cd node_modules && rm rfc6902 -rf && git clone https://github.com/chbrown/rfc6902 && cd rfc6902 && git checkout v3.0.4 && cd ../..",
     "prebuild": "yarn tsc node_modules/rfc6902/*.ts -t ES2019 -m es2015 --outDir node_modules/rfc6902/esm --removeComments && yarn rollup node_modules/rfc6902/esm/patch.js node_modules/rfc6902/esm/pointer.js --output.format esm --output.dir src/rfc6902",
     "build": "yarn rollup -c"
