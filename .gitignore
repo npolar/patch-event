@@ -3,3 +3,4 @@ node_modules
 _*
 src/rfc6902
 dist
+.nowignore

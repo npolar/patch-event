@@ -4,7 +4,15 @@
   "regions": ["bru"],
   "builds": [
     {
-      "src": "/readme.md|((demo|src)/**)",
+      "src": "src/**/*.js",
+      "use": "@now/static"
+    },
+    {
+      "src": "demo/**/*",
+      "use": "@now/static"
+    },
+    {
+      "src": "**/*.md",
       "use": "@now/static"
     }
   ]

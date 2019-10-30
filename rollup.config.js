@@ -1,8 +1,11 @@
+import liveServer from "rollup-plugin-live-server";
+import { eslint } from "rollup-plugin-eslint";
+import filesize from "rollup-plugin-filesize";
+
 const input = {
-  type: "src/type.js",
-  host: "src/host.js",
+  "patch-event": "src/exports.js",
+  "deep-copy": "src/deep-copy.js",
   patch: "src/patch.js",
-  "patch-event": "src/patch-event.js",
   pointer: "src/pointer.js"
 };
 
@@ -10,14 +13,13 @@ const format = "esm";
 const dir = "dist";
 const output = { format, dir };
 
-const plugins = [];
+const plugins = [eslint(), filesize()];
 const { ROLLUP_WATCH } = process.env;
-import liveServer from "rollup-plugin-live-server";
-if (ROLLUP_WATCH) {
 
+if (ROLLUP_WATCH) {
   const liveServerConfig = {
     root: ".",
-    open: "/demo",
+    open: "/demo/undo-redo.html",
     port: 10001
   };
   plugins.push(liveServer(liveServerConfig));

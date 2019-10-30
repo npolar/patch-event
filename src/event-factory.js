@@ -1,10 +1,16 @@
+const _detailEqualsOperation = operation => operation;
 export const eventFactory = (
   eventType,
   operation, // a single JSON Patch operation
-  { bubbles = true, composed = true, cancelable = true } = {}
+  {
+    detail = _detailEqualsOperation,
+    bubbles = true,
+    composed = true,
+    cancelable = true
+  } = {}
 ) =>
   new CustomEvent(eventType, {
-    detail: operation,
+    detail: detail(operation),
     bubbles,
     composed,
     cancelable

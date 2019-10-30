@@ -1,39 +1,64 @@
-import { PATCH_OP } from "./type.js";
-import { patchEvent } from "./patch-event.js";
-import { detail } from "./detail.js";
+import { TYPE } from "./type.js";
+import { patchEventFactory } from "./patch-event-factory.js";
+import { operation as operationFromEvent } from "./operation.js";
 
-// Convenience method to add json-patch event redispatching to a host element
-// Works by capturing regular HTML events and redispatch these as json-patch events
-export const addEventRedispatcher = (
+const _hostClassNameMap = new Map([
+  ["HTMLButtonElement", ["click"]],
+  ["HTMLFormElement", ["input", "click"]],
+  ["HTMLInputElement", ["input"]]
+]);
+const _eventTypesFromHostType = (
   host,
-  { eventType = "input", dispatcher } = {}
-) => host.addEventListener(eventType, dispatcher);
+  map = _hostClassNameMap,
+  unknown = ["input"]
+) => {
+  const { name } = host.constructor;
+  console.warn({ name });
+  return map.has(name) ? map.get(name) : unknown;
+};
+
+const _patchEvent = Symbol("patch-event");
+
+// Convenience method to add patch event redispatching to a host element
+// Works by capturing regular HTML events and redispatch these as json-patch events
+const addEventRedispatcher = (host, { eventType = "input", dispatcher } = {}) =>
+  host.addEventListener(eventType, dispatcher);
 
 // Convenience method to inject handler for json-patch events in a host (custom) element
-export const addPatchEventListener = (host, receiver) =>
-  host.addEventListener(PATCH_OP, receiver);
+const addPatchEventListener = (host, receiver) =>
+  host.addEventListener(TYPE, receiver);
 
 // Register handler (receiver) and re-dispatcher
 export const register = (
   host,
   receiver,
-  { eventTypes = ["input", "click"], dispatcher = redispatch } = {}
+  { eventTypes = _eventTypesFromHostType(host), dispatcher = redispatch } = {}
 ) => {
-  const { registered } = host._patchEvent || {};
+  const { registered } = host[_patchEvent] || {};
   if (!registered) {
     addPatchEventListener(host, receiver);
-    host._patchEvent = { registered: true };
+    host[_patchEvent] = { registered: true };
   }
   for (const eventType of eventTypes) {
     addEventRedispatcher(host, { eventType, dispatcher });
   }
 };
 
-export const dispatch = (host, operation) =>
-  host.dispatchEvent(patchEvent(operation));
+export const emit = (host, operation) =>
+  host.dispatchEvent(patchEventFactory(operation));
 
-export const redispatch = event => {
-  const operation = detail(event);
+const redispatch = event => {
+  const operation = operationFromEvent(event);
+  const { path } = operation;
+  const ignore =
+    "click" === event.type && !["checkbox", "radio"].includes(event.target.type)
+      ? true
+      : false;
+
+  console.warn(event.type, ignore);
+
+  if (path && ignore === false) {
+    emit(event.target, operation);
+  }
   event.preventDefault();
-  dispatch(event.target, operation);
 };

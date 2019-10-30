@@ -1,12 +1,21 @@
 <html>
   <body>
-    <h1>@npolar/patch-event undo/redo demo</h1>
-    <p>(Hint: open console)</p>
-
+    <h2>@npolar/patch-event</h2>
+    <h1>undo/redo demo</h1>
     <form>
       <form>
-        <input id="foo" data-path="/foo" value="bar" placeholder="/foo" />
-        <input id="bar" data-path="/bar" data-op="add" placeholder="/bar" />
+        <input
+          data-path="/foo"
+          value="bar"
+          placeholder="/foo"
+          autocomplete="off"
+        />
+        <input
+          data-path="/bar"
+          data-op="add"
+          placeholder="/bar"
+          autocomplete="off"
+        />
         <button id="undo">undo</button>
         <button id="redo">redo</button>
       </form>
@@ -14,7 +23,11 @@
         <output></output>
       </code>
     </form>
-    <p>See also the <a href="/demo/">kitchen-sink</a> demo.</p>
-    <script type="module" src="mini.js"></script>
+    <script type="module" src="undo-redo.js"></script>
+    <style>
+      html {
+        font-family: sans-serif;
+      }
+    </style>
   </body>
 </html>

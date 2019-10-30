@@ -1,5 +1,4 @@
-import { patchEvent } from "../src/patch-event.js";
-import { register } from "../src/host.js";
+import { register, emit } from "../src/host.js";
 import { patch } from "../src/patch.js";
 
 const { stringify } = JSON;
@@ -14,14 +13,11 @@ const handleFooPatchEvent = event => {
   outputEvents.textContent += "\n" + stringify({ op, path, value });
 };
 
-const emitPatchEvent = ({ op, path, value }) => {
-  form.dispatchEvent(patchEvent({ op, path, value }));
-};
-
+// The button contains the patch for the first click, but this code toggles between add and remove operations
 const handleAddRemoveClick = event => {
   let { op, path } = event.target.dataset;
   let { value } = event.target;
-  emitPatchEvent({ op, path, value });
+  emit(form, { op, path, value });
 
   const reverse = op === "add" ? "remove" : "add";
   button.textContent = `${reverse === "add" ? "+" : "-"} ${reverse} ${path}`;
@@ -51,4 +47,4 @@ const button = document.querySelector("button");
 button.onclick = handleAddRemoveClick;
 outputModel.textContent = stringify(model);
 
-register(form, handleFooPatchEvent, { wait: 0 });
+register(form, handleFooPatchEvent);

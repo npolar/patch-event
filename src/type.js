@@ -1,1 +1,1 @@
-export const PATCH_OP = "patch-op";
+export const TYPE = "patch";
