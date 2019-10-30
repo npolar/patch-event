@@ -1,8 +1,3 @@
 #!/bin/sh
-#
-# Lifecycle scripts for hosted git and local dependencies not run on install
-# https://github.com/yarnpkg/yarn/issues/5235
-#
-# cd node_modules/@npolar/patch-event && yarn && yarn prepare && cd -
 cd node_modules && rm rfc6902 -rf && git clone https://github.com/chbrown/rfc6902 && cd rfc6902 && git checkout v3.0.4 && cd ../..
 yarn tsc node_modules/rfc6902/*.ts -t ES2019 -m es2015 --outDir node_modules/rfc6902/esm --removeComments && yarn rollup node_modules/rfc6902/esm/patch.js node_modules/rfc6902/esm/pointer.js --output.format esm --output.dir src/rfc6902

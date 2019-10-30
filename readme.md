@@ -2,20 +2,6 @@
 
 Non-destructive data modification via (JSON) [Patch](https://tools.ietf.org/html/rfc6902) events.
 
-## Features
-
-- Modern: Codebase is ECMAScript2019
-- Functional: employs a set of pure functions
-- Safe: Patches are performed on a deep copy of the original
-- Tiny (2Kb gzipped)
-
-## Scenarios
-
-Created with the following usage scenarios in mind:
-
-- Form editing with modification history and undo/redo functionality ([demo](https://patch-event.npolar.now.sh/demo/undo-redo.html))
-- Parameter transformation, ie. convert user input into the shape needed by your application's internals
-
 ## Use
 
 **Register**
@@ -47,11 +33,24 @@ If you do not want events for evry keypress, change the `eventTypes` that are in
 register(host, handler, { eventTypes: ["change"] });
 ```
 
+## Features
+
+- Modern: Codebase is ECMAScript2019
+- Functional: employs a set of pure functions
+- Safe: Patches are performed on a deep copy of the original
+- Tiny (2Kb gzipped)
+
+## Scenarios
+
+Created with the following usage scenarios in mind:
+
+- Form editing with modification history and undo/redo functionality ([demo](https://patch-event.npolar.now.sh/demo/undo-redo.html))
+- Parameter transformation, ie. convert user input into the shape needed by your application's internals
+
 ## Install
 
 ```sh
-yarn add https://github.com/npolar/patch-event#master
-cd node_modules/@npolar/patch-event && yarn && yarn prepare && cd -
+yarn add https://github.com/npolar/patch-event#v0.0.1
 ```
 
 ## Requirements
@@ -60,4 +59,4 @@ A ES2019 browser; eg. Firefox >= 63, Chrome >= 73
 
 # Credits
 
-This library builds a non-destructive patch function over chbrown's JSON Pointer and JSON Patch implementation ([rfc6902](https://github.com/chbrown/rfc6902)), using Dr. Alex's [deepCopy](https://2ality.com/2019/10/shared-mutable-state.html). Thanks.
+This library builds a non-destructive patch function over chbrown's JSON Pointer and JSON Patch implementation ([rfc6902](https://github.com/chbrown/rfc6902)), using Dr. Alex's [deepCopy](https://2ality.com/2019/10/shared-mutable-state.html).
