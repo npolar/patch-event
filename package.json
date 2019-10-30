@@ -18,7 +18,7 @@
     "dev": "rollup -c -w",
     "eslint": "eslint src/",
     "test": "yarn eslint",
-    "prepare": "./_prepare",
+    "prepare": "./prepare",
     "build": "yarn rollup -c",
     "now": "yarn build && now"
   }
