@@ -1,40 +1,14 @@
-import {
-  apply,
-  InvalidOperationError,
-  MissingError,
-  TestError,
-  add,
-  copy,
-  move,
-  remove,
-  replace,
-  test
-} from "./rfc6902/patch.js";
+import { deepCopy } from "./deep-copy.js";
+import { apply as _mutatingApplyPatch } from "./rfc6902/patch.js";
 
-// Apply a single non-mutating patch operation on a object
+const { fromEntries } = Object;
+const { stringify, parse } = JSON;
+const _jsonDeepCopy = o => parse(stringify(o));
+
+// Apply a single non-mutating patch operation
 export const patch = (object, operation) => {
-  const result = { ...object };
+  const copy = fromEntries ? deepCopy(object) : _jsonDeepCopy(object);
   const { op, path, value } = operation;
-  apply(result, { op, path, value });
-  return result;
+  _mutatingApplyPatch(copy, { op, path, value });
+  return copy;
 };
-
-// // Apply multiple patch operations and return result, without mutating incoming object
-// export const multipatch = (object, operations) => {
-//   const result = { ...object };
-//   for (const { op, path, value } of operations) {
-//     result = apply(result, { op, path, value });
-//   }
-//   return result;
-// };
-
-export const mutating = {
-  apply,
-  add,
-  copy,
-  move,
-  remove,
-  replace
-};
-
-export { test, InvalidOperationError, MissingError, TestError };

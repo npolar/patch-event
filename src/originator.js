@@ -1,8 +1,8 @@
 export const originator = event => {
-  const originatorTree = event.composedPath();
-
-  if (!originatorTree || originatorTree.length < 1) {
-    throw "No originator";
+  if (true !== event.composed) {
+    console.error(event);
+    throw "Cannot extract originator from non-composed event";
   }
-  return originatorTree[0];
+  const [from] = event.composedPath();
+  return from;
 };

@@ -19,7 +19,7 @@ export const extractOp = from => {
 
 export const extractPath = from => {
   let { path } = from.dataset;
-  if (!path) {
+  if (!path && from.name && from.name.startsWith("/")) {
     return from.name;
   }
   return path;
