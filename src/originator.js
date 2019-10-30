@@ -1,6 +1,5 @@
 export const originator = event => {
   if (true !== event.composed) {
-    console.error(event);
     throw "Cannot extract originator from non-composed event";
   }
   const [from] = event.composedPath();

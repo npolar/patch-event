@@ -13,7 +13,6 @@ const _eventTypesFromHostType = (
   unknown = ["input"]
 ) => {
   const { name } = host.constructor;
-  console.warn({ name });
   return map.has(name) ? map.get(name) : unknown;
 };
 
@@ -54,8 +53,6 @@ const redispatch = event => {
     "click" === event.type && !["checkbox", "radio"].includes(event.target.type)
       ? true
       : false;
-
-  console.warn(event.type, ignore);
 
   if (path && ignore === false) {
     emit(event.target, operation);
