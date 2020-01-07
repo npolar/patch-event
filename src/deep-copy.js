@@ -1,7 +1,7 @@
 const { entries, fromEntries } = Object;
 const { isArray } = Array;
 
-// https://2ality.com/2019/10/shared-mutable-state.html#deep-copying-in-javascript
+// Thanks: https://2ality.com/2019/10/shared-mutable-state.html#deep-copying-in-javascript
 export const deepCopy = original => {
   if (isArray(original)) {
     return original.map(elem => deepCopy(elem));
