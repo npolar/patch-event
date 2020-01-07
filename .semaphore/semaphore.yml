@@ -30,4 +30,5 @@ blocks:
             - checkout
             - nvm use
             - cache restore
+            - yarn prepare
             - yarn test
