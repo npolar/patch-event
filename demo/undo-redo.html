@@ -2,27 +2,16 @@
   <body>
     <h2>@npolar/patch-event</h2>
     <h1>undo/redo demo</h1>
+    <h4>cursor: <span id="cursor"></span> [size: <span id="size"></span>]</h4>
     <form>
-      <form>
-        <input
-          data-path="/foo"
-          value="bar"
-          placeholder="/foo"
-          autocomplete="off"
-        />
-        <input
-          data-path="/bar"
-          data-op="add"
-          placeholder="/bar"
-          autocomplete="off"
-        />
-        <button id="undo">undo</button>
-        <button id="redo">redo</button>
-      </form>
-      <code>
-        <output></output>
-      </code>
+      <input path="/foo" value="bar" placeholder="/foo" autocomplete="off" />
+      <input path="/bar" op="add" placeholder="/bar" autocomplete="off" />
+      <button id="undo">undo</button>
+      <button id="redo">redo</button>
     </form>
+    <code>
+      <output></output>
+    </code>
     <script type="module" src="undo-redo.js"></script>
     <style>
       html {
