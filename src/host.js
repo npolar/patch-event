@@ -57,7 +57,6 @@ const redispatch = event => {
   if (path && ignore === false) {
     emit(event.target, operation);
   }
-  event.preventDefault();
 };
 
 export const getSelfOrAncestorAttribute = (host, name) => {
