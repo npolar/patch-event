@@ -27,6 +27,7 @@ const handleAddRemoveClick = event => {
 let model = {
   foo: {
     text: null,
+    "not-null": "",
     number: null,
     checkbox: null,
     radio: null,
