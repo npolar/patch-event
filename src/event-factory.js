@@ -6,7 +6,7 @@ export const eventFactory = (
     detail = _detailEqualsOperation,
     bubbles = true,
     composed = true,
-    cancelable = true
+    cancelable = false
   } = {}
 ) =>
   new CustomEvent(eventType, {
