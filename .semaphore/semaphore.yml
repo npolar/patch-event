@@ -18,9 +18,9 @@ blocks:
           commands:
             - checkout
             - nvm use
-            - yarn prepare
             - cache restore
             - yarn install
+            - yarn prepare
             - cache store
   - name: Run tests
     task:
