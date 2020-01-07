@@ -1,7 +1,12 @@
 export const originator = event => {
-  if (true !== event.composed) {
-    throw "Cannot extract originator from non-composed event";
+  let host;
+  if (event.composed) {
+    [host] = event.composedPath();
+  } else {
+    [host] = event.path;
   }
-  const [from] = event.composedPath();
-  return from;
+  if (!host) {
+    throw "Failed extracting originator";
+  }
+  return host;
 };
