@@ -3,14 +3,11 @@ import { eslint } from "rollup-plugin-eslint";
 import filesize from "rollup-plugin-filesize";
 
 const input = {
-  "patch-event": "src/exports.js",
-  "deep-copy": "src/deep-copy.js",
-  patch: "src/patch.js",
-  pointer: "src/pointer.js"
+  "patch-event": "src/exports.js"
 };
 
 const format = "esm";
-const dir = "dist";
+const dir = "dist/@npolar";
 const output = { format, dir };
 
 const plugins = [eslint(), filesize()];
@@ -24,4 +21,10 @@ if (ROLLUP_WATCH) {
   };
   plugins.push(liveServer(liveServerConfig));
 }
-export default { input, plugins, output };
+export default [
+  { input, plugins, output },
+  {
+    input: { rfc6902: "src/rfc6902/index.js" },
+    output: { format, dir: "dist/rfc6902" }
+  }
+];
