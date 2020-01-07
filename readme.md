@@ -9,22 +9,23 @@ Use `register` to have a host element re-emit regular `input` events as `patch` 
 
 ```js
 import { register } from "@npolar/patch-event/src/host.js";
-const host = document.querySelector("input[data-path='/foo']");
+const host = document.querySelector("form");
 const handler = event => console.log(event.detail);
 register(host, handler);
 ```
 
 ```html
-<input data-path="/foo" />
+<form>
+  <input path="/foo" />
+  <input path="/bar" />
+</form>
 ```
 
-The code above will log a JSON Patch operation for every input event, eg.:
+The code above will log a JSON Patch operation for every native `input` event, example payload:
 
 ```json
 { "op": "replace", "path": "/foo", "value": "bar" }
 ```
-
-Notice: The built-in `input` event is fired as usual.
 
 **eventTypes**
 If you do not want events for evry keypress, change the `eventTypes` that are intercepted:
