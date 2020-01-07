@@ -12,8 +12,7 @@ blocks:
           commands:
             - checkout
             - nvm use
-            - node --version
-            - npm --version
+            - yarn prepare
             - cache restore
             - yarn install
             - cache store
