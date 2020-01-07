@@ -68,3 +68,7 @@ export const getSelfOrAncestorAttribute = (host, name) => {
     node = node.parentElement;
   }
 };
+
+export const hasSelfOrAncestorAttribute = (host, name) => {
+  return undefined !== getSelfOrAncestorAttribute(host, name);
+};
