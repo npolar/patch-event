@@ -1,6 +1,7 @@
 # @npolar/patch-event
 
 Non-destructive data modification via (JSON) [Patch](https://tools.ietf.org/html/rfc6902) events.
+[![Build status](https://nppolar.semaphoreci.com/badges/patch-event.svg)](https://nppolar.semaphoreci.com/patch-event)
 
 ## Use
 
@@ -9,6 +10,7 @@ Use `register` to have a host element re-emit regular `input` events as `patch` 
 
 ```js
 import { register } from "@npolar/patch-event/src/host.js";
+
 const host = document.querySelector("form");
 const handler = event => console.log(event.detail);
 register(host, handler);
@@ -28,7 +30,7 @@ The code above will log a JSON Patch operation for every native `input` event, e
 ```
 
 **eventTypes**
-If you do not want events for evry keypress, change the `eventTypes` that are intercepted:
+Specify which events that should be re-sent as `patch` events using `eventTypes`:
 
 ```js
 register(host, handler, { eventTypes: ["change"] });
@@ -56,7 +58,7 @@ yarn add https://github.com/npolar/patch-event#v0.0.1
 
 ## Requirements
 
-A ES2019 browser; eg. Firefox >= 63, Chrome >= 73
+A ES2019 compliant browser; eg. Firefox >= 63, Chrome >= 73, Edge >= 7x
 
 # Credits
 
