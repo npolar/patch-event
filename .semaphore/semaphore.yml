@@ -1,0 +1,28 @@
+version: v1.0
+name: Build and test
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: Install dependencies
+    task:
+      jobs:
+        - name: npm install and cache
+          commands:
+            - checkout
+            - nvm use
+            - node --version
+            - npm --version
+            - cache restore
+            - npm install
+            - cache store
+  - name: Run tests
+    task:
+      jobs:
+        - name: npm test
+          commands:
+            - checkout
+            - nvm use
+            - cache restore
+            - npm test
