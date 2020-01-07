@@ -16,7 +16,7 @@
   "scripts": {
     "format": "prettier --write src/*.js",
     "dev": "rollup -c -w",
-    "eslint": "eslint src/",
+    "eslint": "./node_modules/.bin/eslint src",
     "pretest": "yarn eslint",
     "test": "cd node_modules/rfc6902 && yarn tsc -b . test -f && yarn ava",
     "prepare": "./prepare",
