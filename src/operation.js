@@ -5,7 +5,7 @@ import {
   extractValue,
   extractFrom
 } from "./extract.js";
-import { hasSelfOrAncestorAttribute } from "./host.js";
+import { hasSelfOrAncestorAttribute } from "./attr.js";
 
 export const operation = event => {
   const host = originator(event);

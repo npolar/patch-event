@@ -1,5 +1,5 @@
 import { deepCopy } from "./deep-copy.js";
-import { apply as _mutatingApplyPatch, MissingError } from "./rfc6902/patch.js";
+import { apply as mutatingApplyPatch, MissingError } from "./rfc6902/patch.js";
 import { isDestructive } from "./rfc6902/diff.js";
 
 const { fromEntries } = Object;
@@ -9,6 +9,7 @@ const _realPath = path =>
   path && path.length && path.length > 1 && path.startsWith("/");
 const _copier = fromEntries ? deepCopy : _jsonDeepCopy;
 
+export { mutatingApplyPatch };
 export const ops = ["add", "remove", "replace", "move", "copy", "test"];
 
 // Apply a single non-mutating patch operation on a deep copy of the provided object
@@ -45,7 +46,7 @@ export const patch = (
   }
 
   const copy = copier(object);
-  const error = _mutatingApplyPatch(copy, { op, path, value, from });
+  const error = mutatingApplyPatch(copy, { op, path, value, from });
   if (error) {
     throw error;
   }

@@ -1,4 +1,4 @@
-import { getSelfOrAncestorAttribute } from "./host.js";
+import { getSelfOrAncestorAttribute } from "./attr.js";
 // Ancestor attributes are needed when using custom elements that wraps vanilla html inputs/selects:
 // the originator element that dispatches won't have "op", "path", and "from" attributes
 
