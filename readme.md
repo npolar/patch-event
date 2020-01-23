@@ -1,7 +1,7 @@
 # @npolar/patch-event
 
 Non-destructive data modification via (JSON) [Patch](https://tools.ietf.org/html/rfc6902) events.
-[![Build status](https://npolar.semaphoreci.com/badges/patch-event.svg)](https://npolar.semaphoreci.com/patch-event)
+[![Build status](https://npolar.semaphoreci.com/badges/patch-event.svg)](https://npolar.semaphoreci.com/projects/patch-event)
 
 ## Use
 
