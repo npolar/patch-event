@@ -11,11 +11,10 @@ export const operation = event => {
   const host = originator(event);
   const op = extractOp(host);
   const { type, validity } = host;
-  // type: HTML [input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types) (text, number, email, password, ...)
+  // type is text,number,password or any other HTML [input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types)
   // validity:  HTML [validity state(https://developer.mozilla.org/en-US/docs/Web/API/ValidityState)
   const notnull = hasSelfOrAncestorAttribute(host, "not-null"); // ie. nullable is default
   const nullable = !notnull;
-
   const path = extractPath(host); // path is a JSON Pointer
   const value = extractValue(host, { type, nullable }); // type is html host's type
   const from = extractFrom(host);
@@ -23,16 +22,16 @@ export const operation = event => {
   if (false === valid && null === value && nullable) {
     valid = true;
   }
-
   const operation = {
     op,
     path,
     value,
     from,
     extra: {
-      type,
+      inputType: type,
       valid,
-      nullable
+      nullable,
+      eventType: event.type // "input","change", etc.
     }
   };
   return operation;
