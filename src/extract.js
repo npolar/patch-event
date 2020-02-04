@@ -2,7 +2,7 @@ import { getSelfOrAncestorAttribute } from "./attr.js";
 // Ancestor attributes are needed when using custom elements that wraps vanilla html inputs/selects:
 // the originator element that dispatches won't have "op", "path", and "from" attributes
 
-const _valueOrNull = (value, type, { nullable = true } = {}) => {
+const _valueOrEmpty = (value, type, { nullable = true } = {}) => {
   if (nullable && value === "") {
     return null;
   }
@@ -46,17 +46,18 @@ export const extractValue = (
   { type = host.type, nullable = true } = {}
 ) => {
   if (["number", "range"].includes(host.type)) {
-    return host.valueAsNumber;
+    //Careful - custom input elements might not have valueAsNumber property...
+    return host.valueAsNumber ? host.valueAsNumber : Number(host.value);
   } else if (["checkbox"].includes(host.type)) {
     return host.checked;
   } else if (["radio"].includes(host.type)) {
     return host.value;
   } else if (host.type === "select-multiple") {
     return [...host.selectedOptions].map(o =>
-      _valueOrNull(o.value, type, { nullable })
+      _valueOrEmpty(o.value, type, { nullable })
     );
   } else {
     // Notice: The extracted value here is the *property* value (may differ from the html attribute)
-    return _valueOrNull(host.value, type, { nullable });
+    return _valueOrEmpty(host.value, type, { nullable });
   }
 };
