@@ -7,3 +7,5 @@ export * from "./patch.js";
 export * from "./pointer.js";
 export * from "./type.js";
 export * from "./test.js";
+export * from "./rfc6902/diff.js";
+export * from "./rfc6902/equal.js";
