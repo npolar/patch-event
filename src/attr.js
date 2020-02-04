@@ -1,5 +1,4 @@
-export const getSelfOrAncestorAttribute = (host, name) => {
-  let node = host;
+export const getSelfOrAncestorAttribute = (node, name) => {
   while (node !== null && node.parentElement) {
     if (node.hasAttribute(name)) {
       return node.getAttribute(name);
