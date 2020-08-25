@@ -20,7 +20,7 @@
     "pretest": "yarn eslint",
     "test": "exit 0",
     "_test": "cd node_modules/rfc6902 && yarn tsc -b . test -f && yarn ava",
-    "prepare": "./prepare",
+    "_prepare": "./prepare",
     "build": "yarn rollup -c",
     "now": "yarn build && now"
   }
