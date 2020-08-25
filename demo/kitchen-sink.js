@@ -1,5 +1,4 @@
-import { register, emit } from "../src/host.js";
-import { patch } from "../src/patch.js";
+import { patch, register, emit } from "../src/exports.js";
 
 const { stringify } = JSON;
 const { warn } = console;
