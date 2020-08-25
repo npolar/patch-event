@@ -1,5 +1,5 @@
 import { TYPE } from "./type.js";
-import { patchEventFactory } from "./patch-event-factory.js";
+import { emit } from "./emit.js";
 import { operation as operationFromEvent } from "./operation.js";
 
 const _hostClassNameMap = new Map([
@@ -42,9 +42,6 @@ export const register = (
     addEventRedispatcher(host, { eventType, dispatcher });
   }
 };
-
-export const emit = (host, operation) =>
-  host.dispatchEvent(patchEventFactory(operation));
 
 const redispatch = event => {
   const operation = operationFromEvent(event);
