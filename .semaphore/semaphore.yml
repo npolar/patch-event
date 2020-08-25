@@ -20,7 +20,6 @@ blocks:
             - nvm use
             - cache restore
             - yarn install
-            - yarn prepare
             - cache store
   - name: Run tests
     task:
