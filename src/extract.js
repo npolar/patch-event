@@ -45,7 +45,9 @@ export const extractValue = (
   host,
   { type = host.type, nullable = true } = {}
 ) => {
-  if (["number", "range"].includes(host.type)) {
+  if (undefined === type && host.contentEditable) {
+    return host.textContent.trim();
+  } else if (["number", "range"].includes(host.type)) {
     //Careful - custom input elements might not have valueAsNumber property...
     return host.valueAsNumber ? host.valueAsNumber : Number(host.value);
   } else if (["checkbox"].includes(host.type)) {

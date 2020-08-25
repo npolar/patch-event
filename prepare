@@ -2,6 +2,8 @@
 cd node_modules && rm rfc6902 -rf && git clone https://github.com/chbrown/rfc6902 && cd rfc6902 && git checkout v3.0.4 && cd ../..
 cd node_modules/rfc6902 && yarn && yarn pretest && cd -
 mkdir -p src/rfc6902
+mkdir -p node_modules/rfc6902/esm
 cp node_modules/rfc6902/*.md src/rfc6902
+
 yarn tsc node_modules/rfc6902/*.ts -t ES2019 -m es2015 --outDir node_modules/rfc6902/esm --removeComments
 yarn rollup node_modules/rfc6902/esm/*.js --output.format esm --output.dir src/rfc6902
