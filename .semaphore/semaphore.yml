@@ -30,5 +30,4 @@ blocks:
             - nvm use
             - cache restore
             - yarn install
-            - yarn prepare
             - yarn test
